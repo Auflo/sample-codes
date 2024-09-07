@@ -40,17 +40,5 @@ router.put("/books/:id", (req, res) => {
   }
 });
 
-// Delete a book subscription by ID
-router.delete("/books/:id", (req, res) => {
-  const bookId = req.params.id;
-  const bookIndex = books.findIndex(b => b.id === bookId);
-  if (bookIndex !== -1) {
-    books.splice(bookIndex, 1);
-    res.status(204).end();
-  } else {
-    res.status(404).json({ message: "Book subscription not found" });
-    res.status(404).json({ message: "Book not found" });
-  }
-});
 
 module.exports = router;
