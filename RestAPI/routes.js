@@ -3,19 +3,36 @@ const router = express.Router();
 
 let books = [];
 
-// Create a new book subscription
+/**
+ * POST /books
+ * 
+ * This route creates a new book subscription.
+ * It expects a book object in the request body and adds it to the books array.
+ * Responds with the created book object and a status code of 201.
+ */
 router.post("/books", (req, res) => {
   const book = req.body;
   books.push(book);
   res.status(201).json(book);
 });
 
-// Read all book subscriptions
+/**
+ * GET /books
+ * 
+ * This route retrieves all book subscriptions.
+ * It responds with the entire books array in JSON format.
+ */
 router.get("/books", (req, res) => {
   res.json(books);
 });
 
-// Read a single book subscription by ID
+/**
+ * GET /books/:id
+ * 
+ * This route retrieves a single book subscription by its ID.
+ * It searches the books array for a book with the matching ID.
+ * If found, it responds with the book object; otherwise, it responds with a 404 status and an error message.
+ */
 router.get("/books/:id", (req, res) => {
   const bookId = req.params.id;
   const book = books.find(b => b.id === bookId);
@@ -27,7 +44,13 @@ router.get("/books/:id", (req, res) => {
   }
 });
 
-// Update a book subscription by ID
+/**
+ * PUT /books/:id
+ * 
+ * This route updates a book subscription by its ID.
+ * It finds the book in the books array by ID and replaces it with the new data from the request body.
+ * If the book is found and updated, it responds with the updated book object; otherwise, it responds with a 404 status and an error message.
+ */
 router.put("/books/:id", (req, res) => {
   const bookId = req.params.id;
   const bookIndex = books.findIndex(b => b.id === bookId);
