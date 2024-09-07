@@ -38,15 +38,15 @@ router.put("/books/:id", (req, res) => {
   }
 });
 
-// Delete a user by ID
-router.delete("/users/:id", (req, res) => {
-  const userId = req.params.id;
-  const userIndex = users.findIndex(u => u.id === userId);
-  if (userIndex !== -1) {
-    users.splice(userIndex, 1);
+// Delete a book by ID
+router.delete("/books/:id", (req, res) => {
+  const bookId = req.params.id;
+  const bookIndex = books.findIndex(b => b.id === bookId);
+  if (bookIndex !== -1) {
+    books.splice(bookIndex, 1);
     res.status(204).end();
   } else {
-    res.status(404).json({ message: "User not found" });
+    res.status(404).json({ message: "Book not found" });
   }
 });
 
